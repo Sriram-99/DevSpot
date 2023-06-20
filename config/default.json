@@ -1,3 +1,4 @@
 {
-    "mongoURI":"mongodb+srv://devspot_123 :dopam1v7glnGkFKC@cluster0.yhwlcfb.mongodb.net/?retryWrites=true&w=majority"
+    "mongoURI":"mongodb+srv://devspot_123 :dopam1v7glnGkFKC@cluster0.yhwlcfb.mongodb.net/?retryWrites=true&w=majority",
+    "jwtSecret":"mysecrettoken"
 }
