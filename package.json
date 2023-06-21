@@ -4,8 +4,9 @@
   "description": "socal network for developers",
   "main": "server.js",
   "scripts": {
-    "start": "server.js",
-    "server":"nodemon server"
+    "start": "concurrently \"npm run dev:client\" \"npm run dev:server\"",
+    "dev:client": "cd client && npm run dev",
+    "dev:server": "nodemon server.js"
   },
   "author": "sriram madhav",
   "license": "ISC",
