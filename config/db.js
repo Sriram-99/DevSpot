@@ -6,6 +6,7 @@ const connectDB=async ()=>{
     try{
     //    await mongoose.connect(db,{
     //     useNewUrlParser:true,
+    //      useFindAndModify:false,
     //     useCreateIndex:true
     //    });
     mongoose.connect("mongodb://0.0.0.0:27017/devspot");
