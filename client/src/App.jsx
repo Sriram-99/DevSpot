@@ -5,6 +5,7 @@ import Landing from './components/layout/Landing';
 import {BrowserRouter,Routes,Route} from 'react-router-dom';
 import Register from './components/auth/Register';
 import Login from "./components/auth/Login";
+import Alert from "./components/layout/Alert";
 import { Provider } from 'react-redux';
 import Store from './Store';
 
@@ -13,10 +14,11 @@ function App() {
     <Provider store={Store}>
     <BrowserRouter>
     <Navbar/>
+    <Alert/>
     <Routes>
     <Route exact path='/' element={<Landing/>} />
     <Route exact path="/register" element={<Register/>} />
-        <Route exact path="/login" element={<Login/>} />
+    <Route exact path="/login" element={<Login/>} />
     </Routes>
     </BrowserRouter>
      </Provider> 
