@@ -10,14 +10,10 @@ function App() {
     <BrowserRouter>
     <Navbar/>
     <Routes>
-   <Route exact path='/' element={<Landing/>} />
+    <Route exact path='/' element={<Landing/>} />
+    <Route exact path="/register" element={<Register/>} />
+        <Route exact path="/login" element={<Login/>} />
     </Routes>
-    <section className='container'>
-      <switch>
-        <Route exact path="/register" Component={Register} />
-        <Route exact path="/login" Component={Login} />
-      </switch>
-    </section>
     </BrowserRouter>
   )
 }
