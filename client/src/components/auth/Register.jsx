@@ -2,8 +2,9 @@ import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
 import { connect } from 'react-redux';
 import { setAlert } from '../../actions/alert';
+import { register } from '../../actions/auth';
 import PropTypes from 'prop-types'
-const Register = ({setAlert}) => {
+const Register = ({setAlert,register}) => {
   const [formData,setFormData]=useState({
     name:'',
     email:'',
@@ -16,13 +17,12 @@ const Register = ({setAlert}) => {
     e.preventDefault();
     if(password!=password2){
       setAlert('passwords do not match','danger',3000);
-    }else 
-    {
-      console.log('SUCCESS');
+    }else {
+     register({name,email,password});
     }
   };
   return (
-    <section className='container'>
+    <>
       <h1 className="large text-primary">Sign Up</h1>
       <p className="lead"><i className="fas fa-user"></i> Create Your Account</p>
       <form className="form" onSubmit={e=> onSubmit(e)}>
@@ -33,7 +33,7 @@ const Register = ({setAlert}) => {
           name="name" 
           value={formData.name} 
           onChange={e=> onChange(e)} 
-          required />
+           />
         </div>
         <div className="form-group">
           <input 
@@ -42,17 +42,13 @@ const Register = ({setAlert}) => {
           name="email" 
           value={formData.email} 
           onChange={e=> onChange(e)} 
-          required/>
-          {/* <small className="form-text"
-            >This site uses Gravatar so if you want a profile image, use a
-            Gravatar email</small> */}
+          />
         </div>
         <div className="form-group">
           <input
             type="password"
             placeholder="Password"
             name="password"
-            minLength="6"
             value={formData.password} onChange={e=> onChange(e)} required
           />
         </div>
@@ -61,10 +57,8 @@ const Register = ({setAlert}) => {
             type="password"
             placeholder="Confirm Password"
             name="password2"
-            minLength="6"
             value={formData.password2} 
             onChange={e=> onChange(e)} 
-            required
           />
         </div>
         <input type="submit" className="btn btn-primary" value="Register" />
@@ -72,11 +66,14 @@ const Register = ({setAlert}) => {
       <p className="my-1">
         Already have an account? <Link to="/login">Sign In</Link>
       </p>
-    </section>
+      </>
   )
 }
 
 Register.prototype={
-  setAlert:PropTypes.func.isRequired
+  setAlert:PropTypes.func.isRequired,
+  register:PropTypes.func.isRequired
 }
-export default connect(null,{setAlert})(Register);
+export default connect(null,
+  {setAlert,register}
+  )(Register);

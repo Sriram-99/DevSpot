@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom'
 
 const Landing = () => {
   return (
-    <section className="landing">
+    <>
     <div className="dark-overlay">
       <div className="landing-inner">
         <h1 className="x-large">Developers Spot</h1>
@@ -17,7 +17,7 @@ const Landing = () => {
         </div>
       </div>
     </div>
-  </section>
+    </>
   )
 }
 

@@ -22,7 +22,7 @@ import { connect } from 'react-redux';
 
 const Alert = ({ alerts }) => (
   <>
-   <section className='container'>
+   
     {alerts !== null &&
       alerts.map((alert) => (
         
@@ -30,7 +30,7 @@ const Alert = ({ alerts }) => (
           {alert.msg}
         </div>
       ))}
-      </section>
+    
   </>
 );
 
