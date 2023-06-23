@@ -29,7 +29,11 @@ router.post('/', [
     check('password', 'Please enter a password with 6 or more characters').exists()
   ], async (req, res) => {
     const errors = validationResult(req);
-  
+    //
+    const {  email1, password1 } = req.body;
+    console.log(email1);
+    console.log(password1);
+    //
     if (!errors.isEmpty()) {
       return res.status(400).json({ "error": errors.array() });
     }

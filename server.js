@@ -1,9 +1,23 @@
 const express=require("express");
 const connectDB=require('./config/db');
 const app=express();
-
+const cors=require('cors')
 //connect db
 connectDB();
+
+// Enable CORS with all origins allowed
+app.use(cors({
+    origin: '*',
+    allowedHeaders: ['Content-Type', 'Authorization', 'x-auth-token'],
+  }));
+
+app.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    next();
+  });
+
 
 // middleware
 app.use(express.json({extended:false}))

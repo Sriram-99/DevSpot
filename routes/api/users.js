@@ -16,7 +16,7 @@ router.post('/', [
     const errors = validationResult(req);
   
     if (!errors.isEmpty()) {
-      return res.status(400).json({ "error": errors.array() });
+      return res.status(400).json({ 'errors': [{ msg: "Invalid credentials" }] });
     }
   
     const { name, email, password } = req.body;

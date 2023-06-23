@@ -7,8 +7,21 @@ import Login from "./components/auth/Login";
 import Alert from "./components/layout/Alert";
 import { Provider } from 'react-redux';
 import Store from './Store';
+import { loadUser } from './actions/auth';
+import { useEffect } from 'react';
+import store from './Store';
+import setAuthToken from './utils/setAuthToken';
+if(localStorage.token){
+  setAuthToken(localStorage.token)
+}
 
 function App() {
+
+  useEffect(()=>{
+  
+      store.dispatch(loadUser());
+  },[]);
+
   return (
     <Provider store={Store}>
       <BrowserRouter>
