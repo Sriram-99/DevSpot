@@ -11,6 +11,9 @@ import { loadUser } from './actions/auth';
 import { useEffect } from 'react';
 import store from './Store';
 import setAuthToken from './utils/setAuthToken';
+import Dashboard from './components/dashboard/Dashboard';
+import PrivaterRoute from './components/routing/PrivaterRoute';
+// import PrivaterRoute from './components/routing/PrivaterRoute';
 if(localStorage.token){
   setAuthToken(localStorage.token)
 }
@@ -44,6 +47,7 @@ function AppContent() {
           <Route exact path='/' element={<Landing />} />
           <Route exact path="/register" element={<Register />} />
           <Route exact path="/login" element={<Login />} />
+          <Route exact path="/dashboard" element={<PrivaterRoute component={Dashboard}/>} />
         </Routes>
       </div>
     </>
