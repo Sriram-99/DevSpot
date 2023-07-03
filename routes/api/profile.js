@@ -128,11 +128,18 @@ router.get('/user/:user_id',async(req,res)=>{
 router.delete('/',auth,async(req,res)=>{
     try{
         // remove profile
+        console.log("hello in delete");
        
         await Profile.findOneAndRemove({ user: req.user_id });
         // Remove user
-        await User.findOneAndRemove({_id:req.user.id});
-       res.json({msg:'User deleted'});
+        console.log(req.user.id);
+        // 64956e21b75c15ef4576bf5a
+        const value= await User.findByIdAndRemove(req.user.id);
+    //    const value= await User.findOneAndRemove({_id:req.user.id});
+       console.log(value);
+    //   return  res.json({msg:'User deleted'});
+    return res.status(200).json({ msg: 'User deleted' });
+        
     }
     catch(err){
         console.log(err);
