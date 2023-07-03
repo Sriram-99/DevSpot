@@ -12,7 +12,11 @@ import { useEffect } from 'react';
 import store from './Store';
 import setAuthToken from './utils/setAuthToken';
 import Dashboard from './components/dashboard/Dashboard';
+import CreateProfile from './components/profile-forms/CreateProfile';
 import PrivaterRoute from './components/routing/PrivaterRoute';
+import EditProfile from './components/profile-forms/EditProfile';
+import AddExperience from './components/profile-forms/AddExperience';
+import AddEducation from './components/profile-forms/AddEducation';
 // import PrivaterRoute from './components/routing/PrivaterRoute';
 if(localStorage.token){
   setAuthToken(localStorage.token)
@@ -48,6 +52,10 @@ function AppContent() {
           <Route exact path="/register" element={<Register />} />
           <Route exact path="/login" element={<Login />} />
           <Route exact path="/dashboard" element={<PrivaterRoute component={Dashboard}/>} />
+          <Route exact path="/edit-profile" element={<PrivaterRoute component={EditProfile}/>} />
+          <Route exact path="/create-profile" element={<PrivaterRoute component={CreateProfile}/>} />
+          <Route exact path="/add-experience" element={<PrivaterRoute component={AddExperience}/>} />
+          <Route exact path="/add-education" element={<PrivaterRoute component={AddEducation}/>} />
         </Routes>
       </div>
     </>

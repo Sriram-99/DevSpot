@@ -1,7 +1,11 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
-
-const Landing = () => {
+import {NavLink,Navigate} from 'react-router-dom'
+import {connect} from 'react-redux';
+import PropTypes from 'prop-types'
+const Landing = ({isAuthenticated}) => {
+  if(isAuthenticated){
+    return <Navigate to="/dashboard" />;
+  }
   return (
     <>
     <div className="dark-overlay">
@@ -12,13 +16,19 @@ const Landing = () => {
           other developers
         </p>
         <div className="buttons">
-          <Link to="/register" className="btn btn-primary">Sign Up</Link>
-          <Link to="/login" className="btn btn-light">Login</Link>
+          <NavLink to="/register" className="btn btn-primary">Sign Up</NavLink>
+          <NavLink to="/login" className="btn btn-light">Login</NavLink>
         </div>
       </div>
     </div>
     </>
   )
+};
+Landing.PropTypes={
+  isAuthenticated:PropTypes.bool
 }
+ const mapStateToProps =state=>({
+    isAuthenticated:state.auth.isAuthenticated
+ })
 
-export default Landing
+export default connect(mapStateToProps)(Landing)

@@ -13,6 +13,7 @@ const {check,validationResult}=require('express-validator');
 router.get('/me',auth,async(req,res)=>{
    
    try {
+    console.log("hello in server ")
     const profile=await Profile.findOne({user:req.user.id}).populate('user',['name','avatar']);
 
     if(!profile){
@@ -36,6 +37,7 @@ router.post('/',[auth,[
     check('skills','Skills is required').not().isEmpty()
 ]],async(req,res)=>{
     const errors=validationResult(req);
+    console.log("hello in post profile");
     if(!errors.isEmpty()){
         return res.status(400).json({errors:errors.array()});
     }
@@ -50,15 +52,21 @@ router.post('/',[auth,[
     if(bio) profileFields.bio=bio;
     if(status) profileFields.status=status;
     if(githubusername) profileFields.githubusername=githubusername;
-    if(skills) profileFields.skills=skills.split(',').map(skill=>skill.trim());
-
+    console.log(skills);
+    // if(skills) profileFields.skills=skills.split(',').map(skill=>skill.trim());
+    if (typeof skills === 'string') {
+        profileFields.skills = skills.split(',').map(skill => skill.trim());
+      } else {
+        profileFields.skills = skills;
+      }
+      
     // buil social object
     profileFields.social={};
     if(youtube) profileFields.social.youtube=youtube;
-    if(youtube) profileFields.social.twitter=twitter;
-    if(youtube) profileFields.social.facebook=facebook;
-    if(youtube) profileFields.social.linkedin=linkedin;
-    if(youtube) profileFields.social.instagram=instagram;
+    if(twitter) profileFields.social.twitter=twitter;
+    if(facebook) profileFields.social.facebook=facebook;
+    if(linkedin) profileFields.social.linkedin=linkedin;
+    if(instagram) profileFields.social.instagram=instagram;
      try {
         let profile= await Profile.findOne({user:req.user.id});
         if(profile){
@@ -73,6 +81,7 @@ router.post('/',[auth,[
         
      } 
      catch (err) {
+        
         console.log(err);
         res.status(500).send('Server Error')
      }
@@ -147,6 +156,7 @@ router.put('/experience',[auth,[
     if(!errors.isEmpty()){
         return res.status(400).json({errors:errors.array()});
     }
+    console.log(req.body);
     const {title,company,location,from,to,current,description}=req.body;
     const newExp={title,company,location,from,to,current,description};
     try {
