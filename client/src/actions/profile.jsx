@@ -8,7 +8,7 @@ import setAuthToken from '../utils/setAuthToken';
 // getting curr users profile
 export const getCurrentProfile =()=>async dispatch =>{
     try{
-        console.log("hello profile/me");
+       
         const res= await axios.get('http://localhost:5000/api/profile/me');
         console.log(res.data);
         dispatch({
@@ -26,9 +26,8 @@ export const getCurrentProfile =()=>async dispatch =>{
 
 // Get all profiles
 export const getProfiles = () => async (dispatch) => {
-  dispatch({ type: CLEAR_PROFILE });
-
   try {
+    console.log("hello in profilesess");
     const res = await axios.get('http://localhost:5000/api/profile');
 
     dispatch({
