@@ -2,5 +2,6 @@
     "mongoURI":"mongodb+srv://devspot_123 :dopam1v7glnGkFKC@cluster0.yhwlcfb.mongodb.net/?retryWrites=true&w=majority",
     "jwtSecret":"mysecrettoken",
     "githubClientId":"bfe0457cf47978ab4d38",
-    "githubSecret":"b214d1024bbfb0b490055ab36463beff4e1c7f8a"
+    "githubSecret":"b214d1024bbfb0b490055ab36463beff4e1c7f8a",
+    "githubToken":"bfe0457cf47978ab4d38"
 }

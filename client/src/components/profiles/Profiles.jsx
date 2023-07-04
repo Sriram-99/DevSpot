@@ -21,8 +21,8 @@ const Profiles = ({getProfiles,profile:{profiles,loading}}) => {
             {profiles.length > 0 ? 
             (
               profiles.map((profile,index) => (
-                
-                <ProfileItem key={index} profile={profile} />
+               
+                <ProfileItem key={index} profile={profile} /> 
               ))
             ) 
             : (
