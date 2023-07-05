@@ -1,4 +1,5 @@
 import axios from 'axios';
+import proxy from './proxy';
 import { setAlert } from './alert';
 import { REGISTER_FAIL,REGISTER_SUCCESS,USER_LOADED,AUTH_ERROR,LOGIN_SUCCESS,LOGIN_FAIL,LOGOUT,CLEAR_PROFILE } from './types';
 import setAuthToken from '../utils/setAuthToken';
@@ -6,13 +7,13 @@ import setAuthToken from '../utils/setAuthToken';
 export const loadUser=()=>async dispatch=>{
     if(localStorage.token){
         const storedToken = localStorage.getItem('token');
-        console.log(storedToken);
+        
         setAuthToken(localStorage.getItem('token'))
 
         // setAuthToken(localStorage.token)
     }
     try{
-        const res=await  axios.get('http://localhost:5000/api/auth');
+        const res=await  axios.get(`${proxy}/api/auth`);
         dispatch({
             type:USER_LOADED,
             payload:res.data
@@ -35,7 +36,7 @@ export const loadUser=()=>async dispatch=>{
     }
     const body =JSON.stringify({name,email,password});
     try{
-        const res=await axios.post('http://localhost:5000/api/users',body,config);
+        const res=await axios.post(`${proxy}/api/users`,body,config);
         dispatch({
             type:REGISTER_SUCCESS,
             payload :res.data
@@ -62,11 +63,11 @@ export const loadUser=()=>async dispatch=>{
             'Content-Type':'application/json'
         }
     }
-    console.log(email);
+    
     const body =JSON.stringify({email,password});
     try{
         
-        const res=await axios.post('http://localhost:5000/api/auth',body,config);
+        const res=await axios.post(`${proxy}/api/auth`,body,config);
         dispatch({
             type:LOGIN_SUCCESS,
             payload :res.data

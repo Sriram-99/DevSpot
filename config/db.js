@@ -8,9 +8,10 @@ const connectDB=async ()=>{
        await mongoose.connect(db,{
         useNewUrlParser:true
        });
+       console.log("Mongodb is connected")
     }
 
-    //sriram
+    // sriram
     // mongoose.connect("mongodb://0.0.0.0:27017/devspot");
     //    console.log("Mongodb is connected")
     // }

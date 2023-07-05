@@ -1,4 +1,5 @@
 import axios, { formToJSON } from "axios";
+import proxy from "./proxy";
 import { setAlert } from "./alert";
 import { GET_PROFILE,PROFILE_ERROR,UPDATE_PROFILE,ACCOUNT_DELETED ,LOGOUT,GET_PROFILES,GET_REPOS} from "./types";
 import setAuthToken from '../utils/setAuthToken';
@@ -9,8 +10,8 @@ import setAuthToken from '../utils/setAuthToken';
 export const getCurrentProfile =()=>async dispatch =>{
     try{
        
-        const res= await axios.get('http://localhost:5000/api/profile/me');
-        console.log(res.data);
+        const res= await axios.get(`${proxy}/api/profile/me`);
+        
         dispatch({
             type:GET_PROFILE,
             payload:res.data
@@ -27,8 +28,8 @@ export const getCurrentProfile =()=>async dispatch =>{
 // Get all profiles
 export const getProfiles = () => async (dispatch) => {
   try {
-    console.log("hello in profilesess");
-    const res = await axios.get('http://localhost:5000/api/profile');
+    
+    const res = await axios.get(`${proxy}/api/profile`);
 
     dispatch({
       type: GET_PROFILES,
@@ -45,9 +46,9 @@ export const getProfiles = () => async (dispatch) => {
 // Get profile by ID
 export const getProfileById = (userId) => async (dispatch) => {
   try {
-    console.log(userId)
-    const res = await axios.get(`http://localhost:5000/api/profile/user/${userId}`);
-    console.log(res);
+    
+    const res = await axios.get(`${proxy}/api/profile/user/${userId}`);
+    
     dispatch({
       type: GET_PROFILE,
       payload: res.data
@@ -63,10 +64,10 @@ export const getProfileById = (userId) => async (dispatch) => {
 // Get Github repos
 export const getGithubRepos = (username) => async (dispatch) => {
   try {
-    console.log("hello");
+    
     // const res = await axios.get(`http://localhost:5000/api/profile/github/${username}`);
-    const res = await axios.get(`http://localhost:5000/api/profile/github/${username}`);
-    console.log(res);
+    const res = await axios.get(`${proxy}/api/profile/github/${username}`);
+    
     dispatch({
       type: GET_REPOS,
       payload: res.data
@@ -92,8 +93,8 @@ export const createProfile =
             }
         }
 
-      const res = await axios.post('http://localhost:5000/api/profile', body,config);
-        console.log(res);
+      const res = await axios.post(`${proxy}/api/profile`, body,config);
+        
       dispatch({
         type: GET_PROFILE,
         payload: res.data
@@ -123,7 +124,7 @@ export const createProfile =
 export const addExperience = (formData, navigate) => async (dispatch) => {
   try {
    
-       console.log(formData);
+     
        const body =JSON.stringify(formData);
         const config={
             headers:{
@@ -131,8 +132,8 @@ export const addExperience = (formData, navigate) => async (dispatch) => {
             }
         }
 
-      const res = await axios.put('http://localhost:5000/api/profile/experience', body,config);
-        console.log(res);
+      const res = await axios.put(`${proxy}/api/profile/experience`, body,config);
+       
     dispatch({
       type: UPDATE_PROFILE,
       payload: res.data
@@ -166,7 +167,7 @@ export const addEducation = (formData, navigate) => async (dispatch) => {
             }
         }
 
-      const res = await axios.put('http://localhost:5000/api/profile/education', body,config);
+      const res = await axios.put(`${proxy}/api/profile/education`, body,config);
 
 
     dispatch({
@@ -195,7 +196,7 @@ export const addEducation = (formData, navigate) => async (dispatch) => {
 // Delete experience
 export const deleteExperience = (id) => async (dispatch) => {
   try {
-    const res = await axios.delete(`http://localhost:5000/api/profile/experience/${id}`);
+    const res = await axios.delete(`${proxy}/api/profile/experience/${id}`);
     // const res = await api.delete(`/profile/experience/${id}`);
 
     dispatch({
@@ -215,7 +216,7 @@ export const deleteExperience = (id) => async (dispatch) => {
 // Delete education
 export const deleteEducation = (id) => async (dispatch) => {
   try {
-    const res = await axios.delete(`http://localhost:5000/api/profile/education/${id}`);
+    const res = await axios.delete(`${proxy}/api/profile/education/${id}`);
     // const res = await api.delete(`/profile/education/${id}`);
 
     dispatch({
@@ -237,9 +238,9 @@ export const deleteEducation = (id) => async (dispatch) => {
 export const deleteAccount = () => async (dispatch) => {
   if (window.confirm('Are you sure? This can NOT be undone!')) {
     try {
-      console.log("hello ");
-      await axios.delete('http://localhost:5000/api/profile');
-      console.log("hello after rees");
+      
+      await axios.delete(`${proxy}/api/profile`);
+      
       
       dispatch({type:LOGOUT});
       dispatch(setAlert('Your account has been permanently deleted'));
