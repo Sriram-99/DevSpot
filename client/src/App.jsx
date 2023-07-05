@@ -19,6 +19,8 @@ import AddExperience from './components/profile-forms/AddExperience';
 import AddEducation from './components/profile-forms/AddEducation';
 import Profiles from './components/profiles/Profiles';
 import Profile from './components/profile/Profile';
+import Posts from './components/posts/Posts';
+import Post from './components/post/Post';
 // import PrivaterRoute from './components/routing/PrivaterRoute';
 if(localStorage.token){
   setAuthToken(localStorage.token)
@@ -60,6 +62,8 @@ function AppContent() {
           <Route exact path="/create-profile" element={<PrivaterRoute component={CreateProfile}/>} />
           <Route exact path="/add-experience" element={<PrivaterRoute component={AddExperience}/>} />
           <Route exact path="/add-education" element={<PrivaterRoute component={AddEducation}/>} />
+          <Route exact path="/posts" element={<PrivaterRoute component={Posts}/>} />
+          <Route exact path="/posts/:id" element={<PrivaterRoute component={Post}/>} />
         </Routes>
       </div>
     </>
