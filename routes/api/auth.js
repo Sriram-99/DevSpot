@@ -7,8 +7,9 @@ const jwt=require("jsonwebtoken");
 const config=require("config");
 const { check, validationResult } = require('express-validator');
 
-
+// if token is autherized then we send the user details
 // protected the route with middleware
+
 router.get('/',auth,async(req,res)=>{
    try{
         // we dont want password so we - password
@@ -21,7 +22,7 @@ router.get('/',auth,async(req,res)=>{
    }
 });
 
-
+// for user login
 // post api/auth  authenticate-user get token
 router.post('/', [
   

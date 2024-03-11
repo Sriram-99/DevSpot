@@ -5,16 +5,16 @@ const db=config.get('mongoURI');
 const connectDB=async ()=>{
     try{
 
-       await mongoose.connect(db,{
-        useNewUrlParser:true
-       });
-       console.log("Mongodb is connected")
-    }
-
-    // sriram
-    // mongoose.connect("mongodb://0.0.0.0:27017/devspot");
+    //    await mongoose.connect(db,{
+    //     useNewUrlParser:true
+    //    });
     //    console.log("Mongodb is connected")
     // }
+
+    
+    mongoose.connect("mongodb://0.0.0.0:27017/devspot");
+       console.log("Mongodb is connected")
+    }
 
     //madhav
     // mongoose.connect("mongodb://localhost:27017/devspot");
