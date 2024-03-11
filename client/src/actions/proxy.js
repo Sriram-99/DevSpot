@@ -1,2 +1,2 @@
- const proxy="https://devspot-server-4.onrender.com";
+ const proxy="https://devspot-server-3.onrender.com";
  export default proxy;
